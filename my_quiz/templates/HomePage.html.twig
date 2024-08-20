@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %} My Quizz - Accueil {% endblock %}
+
+{% block body %}
+
+<div class="container mt-4">
+    <div class="alert alert-info" role="alert">
+        <strong>Vous êtes connecté en tant que {{ app.user.userIdentifier }}</strong>
+        <a href="{{ path('app_logout') }}" class="btn btn-danger ml-3">Logout</a>
+    </div>
+
+<div class="my-3">
+<a class="btn btn-secondary" href="{{ path('user.edit', {id: app.user.id}) }}">Modifier ma Email</a>
+<a class="btn btn-secondary" href="{{ path('userPassword.edit', {id: app.user.id}) }}">Modifier mon Mot de Passe</a>
+</div>
+<h1 class="display-4">Bienvenue sur My Quizz!</h1>
+<p class="lead">Un site sur lequel vous pouvez tester vos connaissances sur plusieurs thèmes tout en vous amusant. </p>
+
+<h1>Les quizz disponibles :</h1>
+<div class="d-flex flex-wrap">
+{% for categorie in categories %}
+<a class="btn btn-info m-2" href="{{ path('quiz', {'id': categorie.id}) }}">{{ categorie.name }}</a>
+{% endfor %}
+</div>
+
+<h1 class="mt-5">Quiz des utilisateurs :</h1>
+<div class="row">
+{% for quiz in quizzes %}
+<div class="col-md-4 mb-4">
+<div class="card">
+<div class="card-body">
+<h5 class="card-title">{{ quiz.name }}</h5>
+<p class="card-text">Catégorie: {{ quiz.categorie }}</p>
+<p class="card-text">Question: {{ quiz.question }}</p>
+<button class="btn btn-primary" onclick="document.getElementById('answer-{{ quiz.id }}').style.display='block'">Voir la réponse</button>
+<div id="answer-{{ quiz.id }}" style="display: none;">
+<p class="card-text">{{ quiz.reponse }}</p>
+</div>
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+<div class="text-center my-5">
+<h2>Vous voulez créer un quiz aussi ?</h2>
+<h3>(Oui, c'est une question, mais c'est mieux que rien, non ?)</h3>
+<a href="{{ path('create_quiz') }}" class="btn btn-success">Créer un nouveau quiz</a>
+</div>
+</div>
+
+{% endblock %}

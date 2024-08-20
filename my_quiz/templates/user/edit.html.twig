@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit your Profile{% endblock %}
+
+{% block body %}
+
+<div class="container">
+<h1>Changez Votre Email :</h1>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+
+ <button type="submit" class="uppercase bg-blue-500 text-gray-100 text-lg font-semibold py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300">
+        OK
+    </button>
+{{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{# templates/quiz/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Quizz{% endblock %}
+
+{% block body %}
+<h1>Questions de la Categorie </h1>
+
+<form method="post">
+    <ul>
+        {% for reponse in reponses %}  
+       
+         <h4> {{reponse[0]}} </h4> <br>
+
+            {% for repon in reponse[1] %}
+       <input type='radio' name="" value=""> {{ (repon.reponse) }} </input>
+       <br>
+            {% endfor %}
+
+        {% endfor %}
+
+    </ul>
+
+    <input type="submit" value="Envoyer">
+
+</form>
+
+{% endblock %}
